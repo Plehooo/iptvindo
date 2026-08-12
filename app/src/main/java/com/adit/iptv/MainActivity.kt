@@ -184,7 +184,6 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.playlistButton).setOnClickListener { playlistDialog() }
         findViewById<Button>(R.id.settingsButton).setOnClickListener { settingsDialog() }
-        findViewById<Button>(R.id.updateButton).setOnClickListener { updateDialog() }
 
         search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
@@ -716,7 +715,7 @@ class MainActivity : AppCompatActivity() {
         groups += channels.map { it.group.trim() }
             .filter { it.isNotBlank() }
             .distinct()
-            .sortedIgnoreCase()
+            .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it })
 
         val currentIndex = groups.indexOf(selectedGroup).takeIf { it >= 0 } ?: 0
         updatingGroups = true
@@ -729,7 +728,7 @@ class MainActivity : AppCompatActivity() {
         updatingGroups = false
     }
 
-    private fun MutableList<String>.sortedIgnoreCase(): List<String> =
+    private fun MutableList<String>.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }): List<String> =
         sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it })
 
     private fun persistState() {
