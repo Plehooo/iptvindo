@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="12dp"
+        android:background="@color/surface">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APKLIV TV"
+                android:textColor="@color/text"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/playlistLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum ada playlist"
+                android:textColor="@color/muted"
+                android:textSize="11sp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/openFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="M3U"
+            android:minWidth="0dp"/>
+
+        <Button
+            android:id="@+id/manualStreamButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="URL"
+            android:minWidth="0dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:background="@color/surface">
+
+        <EditText
+            android:id="@+id/searchInput"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:background="@color/surface2"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:hint="Search channel, group, TVG ID"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:textColorHint="@color/muted"/>
+
+        <Button
+            android:id="@+id/addPlaylistButton"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_marginStart="6dp"
+            android:text="+ M3U"
+            android:minWidth="0dp"/>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/surface"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <Button android:id="@+id/homeButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="HOME" android:minWidth="0dp"/>
+            <Button android:id="@+id/liveButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="LIVE" android:minWidth="0dp"/>
+            <Button android:id="@+id/favoritesButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="★" android:minWidth="0dp"/>
+            <Button android:id="@+id/historyButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="HISTORY" android:minWidth="0dp"/>
+            <Button android:id="@+id/playlistButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="PLAYLIST" android:minWidth="0dp"/>
+            <Button android:id="@+id/settingsButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="⚙" android:minWidth="0dp"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CATEGORY"
+            android:textColor="@color/muted"
+            android:textSize="11sp"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/groupSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"/>
+    </LinearLayout>
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="235dp"
+        android:background="#000000"
+        app:show_buffering="when_playing"
+        app:use_controller="true"
+        app:resize_mode="fit"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="8dp"
+        android:background="@color/surface">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nowPlaying"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Belum ada channel"
+                android:textColor="@color/text"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Siap"
+                android:textColor="@color/muted"
+                android:textSize="11sp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/retryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="RETRY"
+            android:visibility="gone"
+            android:minWidth="0dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CHANNELS"
+            android:textColor="@color/muted"
+            android:textSize="11sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/statsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0/0 channel"
+            android:textColor="@color/muted"
+            android:textSize="11sp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/channelList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bg"
+        android:divider="@color/line"
+        android:dividerHeight="1dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"/>
+</LinearLayout>
