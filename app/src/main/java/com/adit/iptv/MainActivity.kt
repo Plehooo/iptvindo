@@ -715,7 +715,7 @@ class MainActivity : AppCompatActivity() {
         groups += channels.map { it.group.trim() }
             .filter { it.isNotBlank() }
             .distinct()
-            .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it })
+            .sortedWith(compareBy { it.lowercase() })
 
         val currentIndex = groups.indexOf(selectedGroup).takeIf { it >= 0 } ?: 0
         updatingGroups = true
@@ -728,8 +728,6 @@ class MainActivity : AppCompatActivity() {
         updatingGroups = false
     }
 
-    private fun MutableList<String>.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }): List<String> =
-        sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it })
 
     private fun persistState() {
         prefs.edit()
