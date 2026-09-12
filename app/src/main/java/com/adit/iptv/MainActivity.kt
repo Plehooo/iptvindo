@@ -722,6 +722,11 @@ class MainActivity : AppCompatActivity() {
             view.findViewById<ImageButton>(R.id.channelRowCopy).setOnClickListener {
                 copyText(channel.url)
             }
+            view.setOnClickListener { play(channel) }
+            view.setOnLongClickListener {
+                showChannelActions(channel)
+                true
+            }
             return view
         }
     }
