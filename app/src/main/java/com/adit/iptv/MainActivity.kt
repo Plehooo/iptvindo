@@ -385,6 +385,7 @@ class MainActivity : AppCompatActivity() {
                 "URL:\n${channel.url}"
             )
             .setPositiveButton("Tutup", null)
+            .setNeutralButton("Salin") { _, _ -> copyText(channel.url) }
             .show()
     }
 
