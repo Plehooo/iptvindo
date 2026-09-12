@@ -8,7 +8,9 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -700,15 +702,28 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        val rows = visible.map {
-            val star = if (favorites.contains(it.url)) "★ " else ""
-            val group = if (it.group.isBlank()) "" else " • ${it.group}"
-            "$star${it.name}$group"
-        }
-
-        list.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, rows)
+        list.adapter = ChannelRowAdapter(visible)
         stats.text = "${visible.size}/${channels.size} channel • ${favorites.size} favorite"
         updateGroups()
+    }
+
+    private inner class ChannelRowAdapter(private val items: List<Channel>) : BaseAdapter() {
+        override fun getCount() = items.size
+        override fun getItem(position: Int) = items[position]
+        override fun getItemId(position: Int) = position.toLong()
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val view = convertView ?: LayoutInflater.from(this@MainActivity)
+                .inflate(R.layout.item_channel, parent, false)
+            val channel = items[position]
+            val star = if (favorites.contains(channel.url)) "★ " else ""
+            val group = if (channel.group.isBlank()) "" else " • ${channel.group}"
+            view.findViewById<TextView>(R.id.channelRowText).text = "$star${channel.name}$group"
+            view.findViewById<ImageButton>(R.id.channelRowCopy).setOnClickListener {
+                copyText(channel.url)
+            }
+            return view
+        }
     }
 
     private fun updateGroups() {
